@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="pl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apollo 10 - Generalna Próba lądowania na Księżycu</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        orbitron: ['Orbitron', 'sans-serif'],
+                    },
+                    colors: {
+                        space: {
+                            900: '#030712',
+                            800: '#0b0f19',
+                            700: '#111827',
+                            600: '#1f2937',
+                        },
+                        nasa: {
+                            blue: '#0b3d91',
+                            red: '#fc3d21',
+                            light: '#e5e7eb'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar and starfield effect */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f2937;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #374151;
+        }
+        .starfield {
+            background-image: radial-gradient(white 1px, transparent 0), radial-gradient(white 1px, transparent 0);
+            background-size: 50px 50px;
+            background-position: 0 0, 25px 25px;
+            background-color: #030712;
+        }
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glow-text {
+            text-shadow: 0 0 20px rgba(252, 61, 33, 0.4);
+        }
+        .glow-box {
+            box-shadow: 0 0 30px rgba(11, 61, 145, 0.3);
+        }
+    </style>
+</head>
+<body class="starfield text-gray-100 font-sans antialiased selection:bg-red-600 selection:text-white">
+
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-gray-800 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-full bg-nasa-blue flex items-center justify-center border border-red-500 shadow-lg">
+                        <i class="fa-solid fa-rocket text-white text-lg"></i>
+                    </div>
+                    <span class="font-orbitron font-bold text-xl tracking-wider text-white">APOLLO <span class="text-nasa-red">10</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 font-medium text-sm">
+                    <a href="#misja" class="hover:text-red-500 transition-colors">O Misji</a>
+                    <a href="#zaloga" class="hover:text-red-500 transition-colors">Załoga</a>
+                    <a href="#chronologia" class="hover:text-red-500 transition-colors">Chronologia</a>
+                    <a href="#ciekawostki" class="hover:text-red-500 transition-colors">Ciekawostki</a>
+                    <a href="#galeria" class="hover:text-red-500 transition-colors">Symulator / Dźwięk</a>
+                </div>
+                <div>
+                    <a href="#galeria" class="bg-gradient-to-r from-red-600 to-nasa-blue text-white font-medium px-5 py-2.5 rounded-full text-sm shadow-md hover:opacity-95 transition-all transform hover:scale-105">
+                        Startmisji.exe
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-40">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-900 rounded-full filter blur-[120px]"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-red-900 rounded-full filter blur-[120px]"></div>
+        </div>
+        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center py-20">
+            <div class="inline-flex items-center space-x-2 bg-gray-900/80 border border-gray-700 px-4 py-1.5 rounded-full text-xs font-semibold text-gray-300 mb-6 shadow-inner">
+                <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                <span>Maj 1969 • Generalna Próba Lądowania</span>
+            </div>
+            <h1 class="font-orbitron text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white mb-6 uppercase">
+                Ostatni krok <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-orange-400 to-blue-500 glow-text">przed historią</span>
+            </h1>
+            <p class="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed font-light">
+                Misja Apollo 10 wykonała 99% czynności poprzedzających lądowanie człowieka na Księżycu. Lądownik <span class="text-white font-semibold">Snoopy</span> zbliżył się do srebrnego globu na odległość zaledwie 15,6 kilometra.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+                <a href="#misja" class="w-full sm:w-auto bg-white text-gray-900 font-semibold px-8 py-4 rounded-xl shadow-xl hover:bg-gray-100 transition-all transform hover:-translate-y-0.5">
+                    Poznaj historię misji <i class="fa-solid fa-arrow-down ml-2"></i>
+                </a>
+                <a href="#galeria" class="w-full sm:w-auto glass-panel text-white font-semibold px-8 py-4 rounded-xl hover:bg-gray-800 transition-all border border-gray-700">
+                    Wizualizacje i Audio
+                </a>
+            </div>
+
+            <!-- Mission Stats Counter Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto text-left">
+                <div class="glass-panel p-5 rounded-2xl border-l-4 border-red-500">
+                    <div class="text-xs uppercase tracking-wider text-gray-400 font-medium">Data startu</div>
+                    <div class="font-orbitron text-xl sm:text-2xl font-bold text-white mt-1">18 Maj 1969</div>
+                </div>
+                <div class="glass-panel p-5 rounded-2xl border-l-4 border-blue-600">
+                    <div class="text-xs uppercase tracking-wider text-gray-400 font-medium">Czas trwania</div>
+                    <div class="font-orbitron text-xl sm:text-2xl font-bold text-white mt-1">8d 00h 03m</div>
+                </div>
+                <div class="glass-panel p-5 rounded-2xl border-l-4 border-orange-500">
+                    <div class="text-xs uppercase tracking-wider text-gray-400 font-medium">Rekord prędkości</div>
+                    <div class="font-orbitron text-xl sm:text-2xl font-bold text-white mt-1">39,897 km/h</div>
+                </div>
+                <div class="glass-panel p-5 rounded-2xl border-l-4 border-green-500">
+                    <div class="text-xs uppercase tracking-wider text-gray-400 font-medium">Zbliżenie do gruntu</div>
+                    <div class="font-orbitron text-xl sm:text-2xl font-bold text-white mt-1">15.6 km</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="misja" class="py-24 relative overflow-hidden bg-space-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-red-500 font-semibold text-sm uppercase tracking-widest">Cel strategiczny</span>
+                <h2 class="font-orbitron text-3xl sm:text-5xl font-bold mt-2 mb-4 text-white">Dlaczego Apollo 10 była kluczowa?</h2>
+                <div class="w-20 h-1 bg-red-600 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 text-gray-300 text-base sm:text-lg leading-relaxed">
+                    <p class="glass-panel p-6 rounded-2xl border-l-4 border-nasa-blue">
+                        <strong class="text-white">Apollo 10</strong> była czwartą załogową misją programu Apollo i drugą, która dotarła na orbitę okołoksiężycową. Często nazywa się ją <span class="text-red-400 font-semibold">"generalną próbą"</span> przed historycznym lądowaniem Apollo 11.
+                    </p>
+                    <p>
+                        Głównym zadaniem misji było przetestowanie wszystkich procedur, manewrów oraz systemów lądownika księżycowego (LM) w rzeczywistych warunkach kosmicznych, z wyjątkiem samego lądowania na powierzchni.
+                    </p>
+                    <p>
+                        Załoga przetestowała radar zbliżeniowy, systemy łączności oraz manewr oddzielenia i ponownego połączenia modułu dowodzenia (CM) z lądownikiem w orbicie wokół Księżyca. Bez sukcesu Apollo 10, lądowanie Neila Armstronga w lipcu 1969 roku nie byłoby możliwe.
+                    </p>
+                </div>
+                <div class="relative">
+                    <div class="glass-panel p-8 rounded-3xl border border-gray-700 shadow-2xl relative overflow-hidden group">
+                        <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl text-white font-orbitron font-black pointer-events-none">
+                            A10
+                        </div>
+                        <h3 class="font-orbitron text-2xl font-bold text-white mb-6 flex items-center">
+                            <i class="fa-solid fa-satellite text-red-500 mr-3"></i> Kluczowe parametry misji
+                        </h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start space-x-3">
+                                <i class="fa-solid fa-circle-check text-green-400 mt-1.5"></i>
+                                <div><strong class="text-white">Rakieta nośna:</strong> Saturn V (AS-505) – potężna maszyna o ciągu ponad 34 milionów niutonów.</div>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <i class="fa-solid fa-circle-check text-green-400 mt-1.5"></i>
+                                <div><strong class="text-white">Statki kosmiczne:</strong> Moduł Dowodzenia i Serwisowy CSM-106 "Charlie Brown" oraz Lądownik Księżycowy LM-4 "Snoopy".</div>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <i class="fa-solid fa-circle-check text-green-400 mt-1.5"></i>
+                                <div><strong class="text-white">Miejsce wodowania:</strong> Ocean Spokojny (26 maja 1969 r.), odbici przez okręt USS Princeton.</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="zaloga" class="py-24 relative bg-space-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-blue-500 font-semibold text-sm uppercase tracking-widest">Bohaterowie przestrzeni</span>
+                <h2 class="font-orbitron text-3xl sm:text-5xl font-bold mt-2 mb-4 text-white">Załoga Apollo 10</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Thomas Stafford -->
+                <div class="glass-panel rounded-3xl p-6 text-center hover:border-red-500/50 transition-all duration-300 group transform hover:-translate-y-2">
+                    <div class="w-28 h-28 mx-auto mb-6 rounded-full overflow-hidden border-2 border-red-500/80 p-1 bg-gray-800 shadow-lg">
+                        <img src="https://placehold.co/300x300/0b3d91/ffffff?text=TS" alt="Thomas Stafford" class="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/300x300/111827/ffffff?text=Stafford'">
+                    </div>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-red-400">Dowódca misji</span>
+                    <h3 class="font-orbitron text-2xl font-bold text-white mt-1 mb-3">Thomas Stafford</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Doświadczony astronauta Gemini i Apollo. Dowodził lądownikiem "Snoopy" podczas bliskiego przelotu nad powierzchnią Księżyca.
+                    </p>
+                    <div class="inline-block bg-gray-800/80 text-gray-300 text-xs px-3 py-1 rounded-full border border-gray-700">
+                        Generał USAF
+                    </div>
+                </div>
+
+                <!-- John Young -->
+                <div class="glass-panel rounded-3xl p-6 text-center hover:border-blue-500/50 transition-all duration-300 group transform hover:-translate-y-2">
+                    <div class="w-28 h-28 mx-auto mb-6 rounded-full overflow-hidden border-2 border-blue-500/80 p-1 bg-gray-800 shadow-lg">
+                        <img src="https://placehold.co/300x300/0b3d91/ffffff?text=JY" alt="John Young" class="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/300x300/111827/ffffff?text=Young'">
+                    </div>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-blue-400">Pilot Modułu Dowodzenia</span>
+                    <h3 class="font-orbitron text-2xl font-bold text-white mt-1 mb-3">John Young</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Jedna z legend eksploracji kosmosu. Sterował modułem "Charlie Brown" na orbicie, gdy koledzy badali lądownik. Później dowodził misją Apollo 16 oraz pierwszym lotem wahadłowca (STS-1).
+                    </p>
+                    <div class="inline-block bg-gray-800/80 text-gray-300 text-xs px-3 py-1 rounded-full border border-gray-700">
+                        Legenda NASA
+                    </div>
+                </div>
+
+                <!-- Eugene Cernan -->
+                <div class="glass-panel rounded-3xl p-6 text-center hover:border-orange-500/50 transition-all duration-300 group transform hover:-translate-y-2">
+                    <div class="w-28 h-28 mx-auto mb-6 rounded-full overflow-hidden border-2 border-orange-500/80 p-1 bg-gray-800 shadow-lg">
+                        <img src="https://placehold.co/300x300/0b3d91/ffffff?text=EC" alt="Eugene Cernan" class="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/300x300/111827/ffffff?text=Cernan'">
+                    </div>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-orange-400">Pilot Lądownika Księżycowego</span>
+                    <h3 class="font-orbitron text-2xl font-bold text-white mt-1 mb-3">Eugene Cernan</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Towarzyszył Staffordowi w lądowniku "Snoopy". Później zapisał się w historii jako ostatni człowiek, który postawił stopę na Księżycu (Apollo 17).
+                    </p>
+                    <div class="inline-block bg-gray-800/80 text-gray-300 text-xs px-3 py-1 rounded-full border border-gray-700">
+                        Ostatni człowiek na Księżycu
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="chronologia" class="py-24 relative bg-space-800">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-red-500 font-semibold text-sm uppercase tracking-widest">Krok po kroku</span>
+                <h2 class="font-orbitron text-3xl sm:text-5xl font-bold mt-2 mb-4 text-white">Chronologia Misji</h2>
+                <div class="w-20 h-1 bg-red-600 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="relative border-l-2 border-gray-700 ml-4 sm:ml-32 space-y-12">
+                <!-- Timeline item 1 -->
+                <div class="relative pl-8 sm:pl-12 group">
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-red-500 border-4 border-space-800 group-hover:scale-125 transition-transform"></div>
+                    <div class="absolute -left-28 sm:-left-32 top-1 font-orbitron font-bold text-red-400 text-sm sm:text-base hidden sm:block">18 Maj 1969</div>
+                    <div class="glass-panel p-6 rounded-2xl border border-gray-700">
+                        <span class="font-orbitron text-xs font-bold text-red-400 sm:hidden block mb-1">18 Maj 1969</span>
+                        <h3 class="font-orbitron text-xl font-bold text-white mb-2">Potężny start z przylądka Kennedy'ego</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            Rakieta Saturn V wzbiła się w niebo o godzinie 16:49 UTC, niosąc załogę ku przygodzie życia. Wszystkie trzy stopnie zadziałały perfekcyjnie, umieszczając statek na orbicie wokółziemskiej.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline item 2 -->
+                <div class="relative pl-8 sm:pl-12 group">
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-blue-500 border-4 border-space-800 group-hover:scale-125 transition-transform"></div>
+                    <div class="absolute -left-28 sm:-left-32 top-1 font-orbitron font-bold text-blue-400 text-sm sm:text-base hidden sm:block">21 Maj 1969</div>
+                    <div class="glass-panel p-6 rounded-2xl border border-gray-700">
+                        <span class="font-orbitron text-xs font-bold text-blue-400 sm:hidden block mb-1">21 Maj 1969</span>
+                        <h3 class="font-orbitron text-xl font-bold text-white mb-2">Wejście na orbitę Księżyca</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            Po ponad 3 dniach podróży, silnik modułu serwisowego wykonał manewr TLI i hamowania, wprowadzając Apollo 10 na stabilną orbitę wokół naturalnego satelity Ziemi.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline item 3 -->
+                <div class="relative pl-8 sm:pl-12 group">
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-orange-500 border-4 border-space-800 group-hover:scale-125 transition-transform"></div>
+                    <div class="absolute -left-28 sm:-left-32 top-1 font-orbitron font-bold text-orange-400 text-sm sm:text-base hidden sm:block">22 Maj 1969</div>
+                    <div class="glass-panel p-6 rounded-2xl border border-gray-700">
+                        <span class="font-orbitron text-xs font-bold text-orange-400 sm:hidden block mb-1">22 Maj 1969</span>
+                        <h3 class="font-orbitron text-xl font-bold text-white mb-2">Test lądownika "Snoopy" nad gruntem (15.6 km)</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            Stafford i Cernan przeszli do lądownika i oddzielili się od "Charlie Browna". Zbliżyli się do powierzchni Księżyca na odległość zaledwie 15,6 km, testując radary i silnik członu wznoszenia.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline item 4 -->
+                <div class="relative pl-8 sm:pl-12 group">
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-green-500 border-4 border-space-800 group-hover:scale-125 transition-transform"></div>
+                    <div class="absolute -left-28 sm:-left-32 top-1 font-orbitron font-bold text-green-400 text-sm sm:text-base hidden sm:block">26 Maj 1969</div>
+                    <div class="glass-panel p-6 rounded-2xl border border-gray-700">
+                        <span class="font-orbitron text-xs font-bold text-green-400 sm:hidden block mb-1">26 Maj 1969</span>
+                        <h3 class="font-orbitron text-xl font-bold text-white mb-2">Bezpieczny powrót na Ziemię</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            Po udanym połączeniu modułów załoga ruszyła w drogę powrotną. Kapsuła pomyślnie weszła w atmosferę i wodowała na Oceanie Spokojnym, zamykając misję pełnym sukcesem.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ciekawostki" class="py-24 relative bg-space-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-yellow-500 font-semibold text-sm uppercase tracking-widest">Fascynujące fakty</span>
+                <h2 class="font-orbitron text-3xl sm:text-5xl font-bold mt-2 mb-4 text-white">Ciekawostki o Apollo 10</h2>
+                <div class="w-20 h-1 bg-yellow-500 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-panel p-8 rounded-3xl relative overflow-hidden group">
+                    <div class="w-14 h-14 rounded-2xl bg-yellow-500/10 border border-yellow-500/30 flex items-center justify-center text-yellow-400 text-2xl mb-6 group-hover:bg-yellow-500 group-hover:text-gray-900 transition-all">
+                        <i class="fa-solid fa-dog"></i>
+                    </div>
+                    <h3 class="font-orbitron text-xl font-bold text-white mb-3">Dlaczego "Snoopy"?</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        NASA nazwała lądownik księżycowy imieniem kultowego psa Snoopyego z komiksu "Peanuts", ponieważ miał on „węszyć” i badać potencjalne miejsca lądowania dla Apollo 11. Moduł dowodzenia nazwano z kolei "Charlie Brown".
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-panel p-8 rounded-3xl relative overflow-hidden group">
+                    <div class="w-14 h-14 rounded-2xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 text-2xl mb-6 group-hover:bg-red-500 group-hover:text-white transition-all">
+                        <i class="fa-solid fa-gauge-high"></i>
+                    </div>
+                    <h3 class="font-orbitron text-xl font-bold text-white mb-3">Rekord prędkości Guinnessa</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Podczas powrotu z Księżyca w atmosferę Ziemi, statek Apollo 10 osiągnął prędkość <span class="text-white font-semibold">39 897 km/h (11,1 km/s)</span>. Wynik ten do dziś widnieje w Księdze Rekordów Guinnessa jako najwyższa prędkość osiągnięta przez załogowy pojazd.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-panel p-8 rounded-3xl relative overflow-hidden group">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 text-2xl mb-6 group-hover:bg-blue-500 group-hover:text-white transition-all">
+                        <i class="fa-solid fa-music"></i>
+                    </div>
+                    <h3 class="font-orbitron text-xl font-bold text-white mb-3">Dźwięki z ciemnej strony</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Podczas lotu za niewidoczną dla Ziemi stroną Księżyca, astronauci usłyszeli w słuchawkach dziwne, świszczące dźwięki przypominające "muzykę z kosmosu". Były to zakłócenia radiowe pomiędzy systemami VHF lądownika i modułu dowodzenia.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeria" class="py-24 relative bg-space-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-nasa-blue font-semibold text-sm uppercase tracking-widest">Wirtualne Centrum Kontroli</span>
+                <h2 class="font-orbitron text-3xl sm:text-5xl font-bold mt-2 mb-4 text-white">Interaktywny Panel Misji</h2>
+                <div class="w-20 h-1 bg-nasa-blue mx-auto rounded-full"></div>
+            </div>
+
+            <div class="glass-panel p-8 rounded-3xl border border-gray-700 shadow-2xl">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="font-orbitron text-2xl font-bold text-white mb-4">Symulacja startu Saturna V & Komunikaty</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                            Kliknij przycisk poniżej, aby uruchomić proceduralną sekwencję startową oraz wygenerować syntetyczny dźwięk radiowy komunikatu NASA z tamtych lat bezpośrednio w przeglądarce.
+                        </p>
+                        <div class="flex flex-wrap gap-4 mb-6">
+                            <button id="launchBtn" onclick="triggerLaunch()" class="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-xl transition-all shadow-lg flex items-center space-x-2">
+                                <i class="fa-solid fa-rocket"></i> <span>Odpal Symulację Startu</span>
+                            </button>
+                            <button onclick="playAudioEffect()" class="glass-panel hover:bg-gray-800 text-white font-semibold px-6 py-3 rounded-xl transition-all border border-gray-600 flex items-center space-x-2">
+                                <i class="fa-solid fa-volume-high"></i> <span>Dźwięk Komunikatu</span>
+                            </button>
+                        </div>
+                        <div id="statusConsole" class="bg-black/60 p-4 rounded-xl font-mono text-xs text-green-400 border border-gray-800 h-28 overflow-y-auto">
+                            [SYSTEM READY] Oczekiwanie na inicjalizację procedury Apollo 10...<br>
+                            [CAPCOM] "Apollo 10, tu Houston. Gotowi do startu?"
+                        </div>
+                    </div>
+
+                    <!-- Visual interactive screen / Canvas or Graphic representation -->
+                    <div class="relative h-72 sm:h-80 rounded-2xl overflow-hidden bg-space-900 border border-gray-700 flex items-center justify-center p-6">
+                        <div id="visualDisplay" class="text-center transition-all duration-500">
+                            <div class="w-20 h-20 mx-auto rounded-full bg-nasa-blue/30 border border-red-500 flex items-center justify-center mb-4 text-3xl text-red-400 animate-pulse">
+                                <i class="fa-solid fa-moon"></i>
+                            </div>
+                            <h4 class="font-orbitron text-lg font-bold text-white">Snoopy & Charlie Brown</h4>
+                            <p class="text-xs text-gray-400 mt-2">Orbita okołoksiężycowa - Alt: 15.6 km</p>
+                        </div>
+                        <!-- Animated rocket wrapper inside display -->
+                        <div id="rocketAnim" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 transition-all duration-1000 opacity-0 pointer-events-none">
+                            <i class="fa-solid fa-rocket text-5xl text-orange-500 animate-bounce"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-space-900 border-t border-gray-800 py-12 text-center text-gray-400 text-sm">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center justify-center space-x-3 mb-4">
+                <div class="w-8 h-8 rounded-full bg-nasa-blue flex items-center justify-center border border-red-500">
+                    <i class="fa-solid fa-rocket text-white text-xs"></i>
+                </div>
+                <span class="font-orbitron font-bold text-lg text-white">APOLLO 10</span>
+            </div>
+            <p class="mb-4">Edukacyjna strona poświęcona legendarnej misji NASA z 1969 roku.</p>
+            <p class="text-xs text-gray-600">&copy; 2026 Projekt edukacyjny w czystym HTML/Tailwind. Wszystkie prawa do materiałów historycznych należą do NASA.</p>
+        </div>
+    </footer>
+
+    <script>
+        function logToConsole(message) {
+            const consoleBox = document.getElementById('statusConsole');
+            const time = new Date().toLocaleTimeString();
+            consoleBox.innerHTML += `<br>[${time}] ${message}`;
+            consoleBox.scrollTop = consoleBox.scrollHeight;
+        }
+
+        function triggerLaunch() {
+            logToConsole("Inicjalizacja zapłonu silników F-1 Saturna V...");
+            const rocket = document.getElementById('rocketAnim');
+            const display = document.getElementById('visualDisplay');
+            
+            display.style.opacity = '0.2';
+            rocket.style.opacity = '1';
+            rocket.style.bottom = '70%';
+
+            setTimeout(() => {
+                logToConsole("Odrzucono pierwszy stopień S-IC. Separacja udana!");
+            }, 1500);
+
+            setTimeout(() => {
+                logToConsole("Drugi stopień S-II odpalił poprawnie.");
+            }, 3000);
+
+            setTimeout(() => {
+                logToConsole("Wprowadzenie na orbitę Ziemi zakończone sukcesem!");
+                display.style.opacity = '1';
+                rocket.style.opacity = '0';
+                rocket.style.bottom = '1rem';
+            }, 5000);
+        }
+
+        function playAudioEffect() {
+            logToConsole("Odtwarzanie oryginalnej transmisji Capcom...");
+            // Web Audio API simple synthesized beep/sound for safe offline immersion
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+                
+                oscillator.type = 'sine';
+                oscillator.frequency.setValueAtTime(440, audioCtx.currentTime); // A4 note
+                oscillator.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.5);
+                
+                gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                
+                oscillator.start();
+                oscillator.stop(audioCtx.currentTime + 0.5);
+            } catch (e) {
+                console.log("Audio context not supported or blocked.");
+            }
+        }
+    </script>
+</body>
+</html>
